@@ -1,57 +1,54 @@
 package tn.esprit.spring;
 
-import org.junit.After;
 import org.junit.jupiter.api.*;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BlocServiceTest {
 
     @BeforeAll
-    public static void bedore() {
-        System.out.println("Before all tests");
+    public static void beforeAll() {
+        System.out.println("SpringBootTest - Before all tests");
     }
 
     @AfterAll
-    public static void after() {
-        System.out.println("After all tests");
+    public static void afterAll() {
+        System.out.println("SpringBootTest - After all tests");
     }
 
     @BeforeEach
     void beforeEach() {
-        System.out.println("Before each test");
+        System.out.println("SpringBootTest - Before each test");
     }
 
     @AfterEach
     void afterEach() {
-        System.out.println("After each test");
+        System.out.println("SpringBootTest - After each test");
     }
 
+    @Test
     @Order(1)
     @RepeatedTest(4)
-    void test() {
-        Assertions.assertTrue(true); // dummy test
+    void testRepeated() {
+        Assertions.assertTrue(true); // Dummy repeated test
     }
 
-    @Order(4)
     @Test
+    @Order(2)
     void test2() {
         Assertions.assertFalse(false);
     }
 
-    @Order(2)
     @Test
+    @Order(3)
     void test3() {
         int sum = 2 + 2;
         Assertions.assertEquals(4, sum);
     }
 
-    @Order(3)
     @Test
+    @Order(4)
     void test4() {
         String message = "Hello";
         Assertions.assertNotNull(message);
